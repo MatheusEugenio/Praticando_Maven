@@ -1,17 +1,37 @@
 package org.example;
 
+import org.example.controllerCad.ControllerCadastro;
+import org.example.entitys.Usuario;
+import org.example.service.CadastroService;
+
 public class Main {
     public static void main(String[] args) {
 
-        String frase = "voltando as origens!!";
-        System.out.println(frase);
+        CadastroService cadService = new CadastroService();
+        ControllerCadastro controllerCad = new ControllerCadastro(cadService);
 
-        String[] fraseSeparada = frase.split(" ");
+        Usuario user1 = new Usuario("sebastian", "sebastianSebas12@gmail.com", "sebas123", "12343122101");
+        Usuario user2 = new Usuario("pacheco", "pachecox86@gmail.com", "checo12", "12312342343");
+        Usuario user3 = new Usuario("rafael", "rafelsoares23@gmail.com", "rafaSoas34", "12423423091");
+        Usuario user4 = new Usuario("vitor", "vitor123@gmail.com", "vitorGaules99", "52425234291");
 
-        for (String palavra : fraseSeparada) {
-            System.out.println(palavra+ "\n");
+        try {
+            controllerCad.cadastrarUsuario(user1);
+            controllerCad.cadastrarUsuario(user2);
+            controllerCad.cadastrarUsuario(user3);
+            controllerCad.cadastrarUsuario(user4);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("feplps");
+        controllerCad.listarUsuarios();
+
+        controllerCad.excluirUsuario(user2);
+
+        controllerCad.listarUsuarios();
+
+        controllerCad.removerTodos();
+
+        controllerCad.listarUsuarios();
     }
 }
